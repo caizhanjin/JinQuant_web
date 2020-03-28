@@ -10,12 +10,21 @@ export default new Router({
             redirect: '/login'
         },
         {
+            path: '/demo',
+            component: resolve => require(['@/components/demo'], resolve)
+        },
+        {
+            path: '/register',
+            component: resolve => require(['@/components/user/register'], resolve)
+        },
+        {
             path: '/login',
-            component: resolve => require(['@/components/login'], resolve)
+            component: resolve => require(['@/components/user/login'], resolve)
         },
         {
             path: '/navigator',
             component: resolve => require(['@/components/navigator'], resolve)
         },
+
     ]
 })

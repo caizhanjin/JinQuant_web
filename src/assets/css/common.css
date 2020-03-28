@@ -87,5 +87,9 @@ html, body, #app{
     color: #FFFFFF;
 }
 
+.v-modal{
+    opacity: 0.2 !important;
+}
+
 
 
