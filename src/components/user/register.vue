@@ -30,7 +30,7 @@
 
     <el-card shadow="never" class="circular_border margin_top_20 background_gray line_middle" style="margin-top:60px">
         <span>已有账号？</span>
-        <el-link type="primary">前往登录</el-link>
+        <router-link to="/login"><el-link type="primary">前往登录</el-link></router-link>
     </el-card>
 
 </div>

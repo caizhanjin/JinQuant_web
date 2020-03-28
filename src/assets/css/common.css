@@ -91,5 +91,7 @@ html, body, #app{
     opacity: 0.2 !important;
 }
 
-
+a {
+    text-decoration: none;
+}
 
