@@ -53,7 +53,7 @@
                     <i class="el-icon-s-fold" v-if="!is_sollapse"></i>
                     <i class="el-icon-s-unfold" v-else ></i>
                 </el-menu-item>
-                <el-menu-item index="1" @click="goRoute('/home')"><i class="el-icon-s-home"></i></el-menu-item>
+                <el-menu-item index="1" @click="goRoute('/nav/home')"><i class="el-icon-s-home"></i></el-menu-item>
                 <el-menu-item index="2" @click="is_show_taps=true">导航</el-menu-item>
                 <el-menu-item index="3" style="float:right" @click="drawer=true"><i class="el-icon-more"></i></el-menu-item>
                 <el-menu-item index="4" style="float:right">
@@ -74,7 +74,6 @@
             <div class="navigator_right_tags_i float_left">
                 <el-button icon="el-icon-arrow-left" size="mini" @click="moveTaps('right')"></el-button>
             </div>
-
             <div id="hr_scanll_box">
                 <ul id="hr_scanll_ul">
                     <li v-for="(item, index) in tags_list" :key="index">
@@ -86,7 +85,6 @@
                     </li>
                 </ul>
             </div>
-
             <div class="navigator_right_tags_i float_right">
                 <el-button icon="el-icon-arrow-right" size="mini" @click="moveTaps('left')"></el-button>
                 <el-button icon="el-icon-close" size="mini" @click="is_show_taps=false"></el-button>
@@ -106,9 +104,7 @@
     <el-drawer custom-class="navigator_drawer" :visible.sync="drawer" :with-header="false">
         <span>You got it !</span>
     </el-drawer>
-
 </div>
-
 </template>
 
 <script>
@@ -238,8 +234,8 @@ export default {
             const item = this.tags_list[index] ? this.tags_list[index] : this.tags_list[index - 1];
             if (item) {
                 delItem.path === this.$route.fullPath && this.$router.push(item.path);
-            }else if(this.$route.fullPath != "/home"){
-                this.$router.push('/home');
+            }else if(this.$route.fullPath != "/nav/home"){
+                this.$router.push('/nav/home');
             }
         },
         setTags(route){
