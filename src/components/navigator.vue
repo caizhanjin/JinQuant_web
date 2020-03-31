@@ -12,18 +12,15 @@
                 text-color="#fff"
                 active-text-color="#409EFF"
                 :unique-opened="true"
+                :router="true"
             >
-                <el-submenu index="1">
+                <el-submenu v-for="(item1, key1) in navigator_list" :index="String(item1.index)" :key="key1">
                     <template slot="title">
-                        <i class="el-icon-location"></i>
-                        <span slot="title">导航一</span>
+                        <i :class="item1.icon"></i><span slot="title">{{ item1.name }}</span>
                     </template>
-                    <el-submenu index="1-1">
-                        <span slot="title">选项4</span>
-                        <el-menu-item index="1-1-1">选项1</el-menu-item>
-                    </el-submenu>
+                    <el-menu-item v-for="(item2, key2) in item1.childs" :index="String(item2.router)"  :key="key2">{{ item2.name }}</el-menu-item>
                 </el-submenu>
-
+<!-- 
                 <el-submenu index="2">
                     <template slot="title">
                         <i class="el-icon-location"></i>
@@ -32,14 +29,14 @@
                     <el-submenu index="2-1">
                         <span slot="title">选项4</span>
                         <el-menu-item index="2-1-1">选项1</el-menu-item>
-                        <el-menu-item index="2-1-2">选项1</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2-2">
                         <span slot="title">选项4</span>
                         <el-menu-item index="2-2-1">选项1</el-menu-item>
                         <el-menu-item index="2-2-2">选项1</el-menu-item>
                     </el-submenu>
-                </el-submenu>
+                </el-submenu> 
+-->
             </el-menu>
         </div>
     </div>
@@ -56,53 +53,37 @@
                     <i class="el-icon-s-fold" v-if="!is_sollapse"></i>
                     <i class="el-icon-s-unfold" v-else ></i>
                 </el-menu-item>
-                <el-menu-item index="1"><i class="el-icon-s-home" style=""></i>首页</el-menu-item>
+                <el-menu-item index="1" @click="goRoute('/home')"><i class="el-icon-s-home"></i></el-menu-item>
                 <el-menu-item index="2" @click="is_show_taps=true">导航</el-menu-item>
                 <el-menu-item index="3" style="float:right" @click="drawer=true"><i class="el-icon-more"></i></el-menu-item>
                 <el-menu-item index="4" style="float:right">
                     <i class="el-icon-full-screen" v-if="is_full_screen" @click="exitFullscreen"></i>
                     <i class="el-icon-full-screen" v-else @click="goFullScreen"></i>
                 </el-menu-item>
+                <el-submenu index="7" style="float:right" class="navigator_personal_center">
+                    <template slot="title"><el-avatar :size="25">进</el-avatar></template>
+                    <el-menu-item index="2-1">个人中心</el-menu-item>
+                    <el-menu-item index="2-2">退出</el-menu-item>
+                </el-submenu>
                 <el-menu-item index="5" style="float:right">注册</el-menu-item>
                 <el-menu-item index="6" style="float:right">登录</el-menu-item>
             </el-menu>
         </div>
 
-        <div class="navigator_right_tags" id="navigator_right_tags" v-if="is_show_taps">
+        <div class="navigator_right_tags" id="navigator_right_tags" v-if="is_show_taps && tags_list.length!=0">
             <div class="navigator_right_tags_i float_left">
                 <el-button icon="el-icon-arrow-left" size="mini" @click="moveTaps('right')"></el-button>
             </div>
 
             <div id="hr_scanll_box">
                 <ul id="hr_scanll_ul">
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>  
-
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>                      <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>                      <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>                      <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>
-                    <li><el-tag type="info" size="small">标签三</el-tag></li>   
+                    <li v-for="(item, index) in tags_list" :key="index">
+                        <el-tag type="info" size="small" closable 
+                            :effect="tagIsActive(item.path) ? 'dark' : 'light'"
+                            @close="closeTags(index)"
+                            @click="goRoute(item.path)"
+                        >{{ item.title }}</el-tag>
+                    </li>
                 </ul>
             </div>
 
@@ -113,8 +94,12 @@
         </div>
 
         <div class="navigator_right_body">
-
-
+            <el-collapse-transition>
+                <keep-alive><router-view v-if="$route.meta.isKeepAlive"></router-view></keep-alive>
+            </el-collapse-transition>
+            <el-collapse-transition>
+                <router-view v-if="!$route.meta.isKeepAlive"></router-view>
+            </el-collapse-transition>
         </div>
     </div>
 
@@ -127,6 +112,7 @@
 </template>
 
 <script>
+
 export default {
     name: "navigator",
     data () {
@@ -135,13 +121,140 @@ export default {
             drawer: false,
             is_full_screen: false,
             is_show_taps: true, 
+
+            tags_list: [],
+
+            navigator_list: [
+                {
+                    index: 1,
+                    name: "用户管理",
+                    router: "",
+                    icon: "el-icon-user-solid",
+                    childs: [
+                        {
+                            index: 1,
+                            name: "用户管理",
+                            router: "user",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 2,
+                            name: "角色设置",
+                            router: "role",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 3,
+                            name: "权限设置",
+                            router: "auth",
+                            icon: "",
+                            childs: []
+                        },
+                    ]
+                },
+                {
+                    index: 2,
+                    name: "数据管理",
+                    router: "",
+                    icon: "el-icon-s-data",
+                    childs: [
+                        {
+                            index: 1,
+                            name: "用户管理",
+                            router: "user",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 2,
+                            name: "角色设置",
+                            router: "role",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 3,
+                            name: "权限设置",
+                            router: "auth",
+                            icon: "",
+                            childs: []
+                        },
+                    ]
+                },
+                {
+                    index: 3,
+                    name: "数据分析",
+                    router: "",
+                    icon: "el-icon-s-marketing",
+                    childs: [
+                        {
+                            index: 1,
+                            name: "用户管理",
+                            router: "user",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 2,
+                            name: "角色设置",
+                            router: "role",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 3,
+                            name: "权限设置",
+                            router: "auth",
+                            icon: "",
+                            childs: []
+                        },
+                    ]
+                },
+            ]
         }
     },
     created() {
-        
-
+        this.setTags(this.$route)
+    },
+    watch:{
+        $route(newValue, oldValue){
+            this.setTags(newValue)
+        }
     },
     methods: {
+        goRoute(router){
+            if(router == this.$route.fullPath){
+                return
+            }
+            this.$router.push(router)
+        },
+        tagIsActive(path) {
+            return path === this.$route.fullPath;
+        },
+        closeTags(index) {
+            const delItem = this.tags_list.splice(index, 1)[0];
+            const item = this.tags_list[index] ? this.tags_list[index] : this.tags_list[index - 1];
+            if (item) {
+                delItem.path === this.$route.fullPath && this.$router.push(item.path);
+            }else if(this.$route.fullPath != "/home"){
+                this.$router.push('/home');
+            }
+        },
+        setTags(route){
+            const isExist = this.tags_list.some(item => {
+                return item.path === route.fullPath;
+            })
+            if(!isExist){
+                this.tags_list.push({
+                    title: route.meta.title,
+                    path: route.fullPath,
+                    name: route.matched[1].components.default.name
+                })
+            }
+            this.$emit('tags', this.tags_list)
+        },
         goFullScreen(){
             this.is_full_screen = true
         　　var element = document.getElementById("content");
@@ -252,9 +365,9 @@ export default {
     color: #fff;
 }
 
-.navigator_right_header .el-menu, .navigator_right_header .el-menu-item{
-    height: 50px;
-    line-height: 50px;
+.navigator_right_header .el-menu, .navigator_right_header .el-menu-item, .navigator_right_header .el-submenu, .navigator_right_header .el-submenu__title{
+    height: 50px !important;
+    line-height: 50px !important;
 }
 
 .navigator_right_tags{
@@ -289,16 +402,22 @@ export default {
 #hr_scanll_ul, #hr_scanll_ul li{
     padding: 0;
     margin: 0;
+    padding-right: 5px;
 }
 
 #hr_scanll_ul li{
     display: inline-block;
+    cursor:pointer; 
 }
 
 .navigator_drawer{
     width: 20% !important;
     top: 88px !important;
     background: #f2f2f2 !important;
+}
+
+.navigator_personal_center .el-submenu__icon-arrow{
+    font-size: 12px !important;
 }
 
 
