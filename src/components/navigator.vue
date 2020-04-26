@@ -151,6 +151,35 @@ export default {
                     ]
                 },
                 {
+                    index: 5,
+                    name: "运行监控",
+                    router: "",
+                    icon: "el-icon-s-platform",
+                    childs: [
+                        {
+                            index: 1,
+                            name: "用户管理",
+                            router: "user",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 2,
+                            name: "角色设置",
+                            router: "role",
+                            icon: "",
+                            childs: []
+                        },
+                        {
+                            index: 3,
+                            name: "权限设置",
+                            router: "auth",
+                            icon: "",
+                            childs: []
+                        },
+                    ]
+                },
+                {
                     index: 2,
                     name: "数据管理",
                     router: "",
@@ -311,7 +340,7 @@ export default {
     background: #303133;
 }
 
-.navigator_background2{
+.navigator_backgroun·d2{
     background: #393d49;
 }
 
@@ -379,7 +408,7 @@ export default {
 #hr_scanll_box{
     display: inline-block;
     width: calc(100% - 180px);
-    height: 35px;
+    height: 32px;
     white-space: nowrap;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
